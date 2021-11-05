@@ -3,7 +3,8 @@
 <div class="self-center w-auto flex justify-center items-center mt-40">
    <div class="container mx-auto max-w-xs rounded-lg overflow-hidden shadow-lg my-2 bg-white">
       <div class="relative mb-6">
-         <img class="object-cover h-80 w-full" src="https://media.giphy.com/media/26FPLsoMq5cPEVgg8/giphy.gif"
+         <!-- <img class="object-cover h-80 w-full" src="https://media.giphy.com/media/26FPLsoMq5cPEVgg8/giphy.gif" -->
+         <img class="object-cover h-80 w-full" :src="props.source"
             alt="Profile picture" />
          <div class="text-center absolute w-full" style="bottom: -50px">
             <!-- <div class="mb-10">
@@ -37,10 +38,11 @@
 </div>
 </template>
 
-<script>
-  export default {
-    
-  }
+<script setup lang="ts">
+const props = defineProps({
+  source : String
+})
+// console.log("prop passed", props.source)
 </script>
 
       <style>
@@ -52,4 +54,5 @@
       .button:hover {
       box-shadow: 0 0 0 0 #ec008c, 0.2rem 0.2rem 60px #6617cb;
       }
+      
    </style>

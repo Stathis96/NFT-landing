@@ -35,10 +35,27 @@
       </div>
     </div>
 
-    <!-- <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark flex items-center justify-center"> -->
-    <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark">
-      <div class="pt-10 pr-10 font-mono text-lg text-white text-right"> Join Us </div>
-      <Card /> 
+    <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark flex items-center justify-center">
+    <!-- <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark"> -->
+      <!-- <div class="pt-10 pr-10 font-mono text-lg text-white text-right"> Join Us </div> -->
+      <!-- <Card />  -->
+
+    <transition
+      appear
+      @before-enter="beforeEnter"
+      @enter="enter"
+    >
+    <!-- <div>
+      <Card v-for="(source,index) in sources" :key="source.id" :source="source" :data-index="index"/>
+    </div> -->
+     <div class="slider overflow-hidden">
+      <div class="slide-track ">
+        <Card class="slide-track "
+          v-for="(source,index) in sources" :key="source.id" :source="source" :data-index="index"/>
+       </div>
+       </div> 
+    </transition>
+
     </div>
   </div>
 
@@ -75,13 +92,21 @@
     </div>
   </div>
 
-  <div class="w-full h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark">
+  <div class="w-full h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark ">
     
-    <div class="flex flex-row pl-10 font-mono text-lg font-bold text-white items-center">
-      <div class="w-1/2 flex flex-col items-center justify-center">
-        <Card />
-      </div>
+    <div class="flex flex-row font-mono text-lg font-bold text-white items-center">
+      
+     <transition
+      appear
+      @before-enter="beforeEnter"
+      @enter="enter"
+    >
 
+      <div class="w-1/2 flex flex-col items-center justify-center">
+        <Card :source="sources[5]"/>
+      </div>
+     </transition>
+     
         <div class="w-1/2 flex flex-col items-center mx-20 ">
 
           <p class="text-3xl text-yellow-300 mb-4">Miracle Feature</p>
@@ -100,13 +125,8 @@
         <p class="w-1/2 text-xl my-20 text-gray-400 mx-56">Search and find the most popular digital artwork for this week! We have a serach feature that can be used to make searching easier.</p>
     </div>
 
-  <div class="grid gap-2 grid-cols-3">
-    <Card/>
-    <Card/>
-    <Card/>
-    <Card/>
-    <Card/>
-    <Card/>
+  <div class="grid gap-2 grid-cols-3" >
+    <Card v-for="source in sources" :key="source.id" :source="source" />
   </div>
   
   <div class="w-full flex flex-row justify-center">
@@ -121,11 +141,7 @@
     </div>
 
   <div class="inline flex justify-between space-x-4 mx-8">
-    <Card/>
-    <Card/>
-    <Card/>
-    <Card/>
-    <Card/>
+    <Card v-for="source in sources" :key="source.id" :source="source" />
   </div>
 
   </div>
@@ -149,12 +165,80 @@
 import { ref } from 'vue'
 import Footer from './Footer.vue'
 import Card from './Card.vue'
+import gsap from 'gsap'
 
 defineProps<{ msg: string }>()
 
-const count = ref(0)
+    const beforeEnter = (el:any) => {
+      console.log('before enter - set intial state')
+      // el.style.transform = 'translateY(-60px)'
+      el.style.transform = 'translateX(200px)'
+      el.style.opacity = 0
+    }
+    const enter = (el:any, done:any) => {
+      console.log('starting to enter - make transition')
+      gsap.to(el, {
+        duration: 3,
+        x: 0,
+        y: 0,
+        opacity: 1,
+        ease: 'bounce.out',
+        onComplete: done,
+        delay: el.dataset.index * 0.4
+      })
+    }
+
+  const sources = ref([
+    'https://media.giphy.com/media/oWjyixDbWuAk8/giphy.gif',
+    'https://media.giphy.com/media/10J0650fCjXwty/giphy.gif',
+    'https://media.giphy.com/media/PnPU9GhN3V7oVizSHG/giphy.gif',
+    'https://media.giphy.com/media/26FPLsoMq5cPEVgg8/giphy.gif',
+    'https://media.giphy.com/media/c5wbvuaVVLWzC/giphy.gif',
+    'https://media.giphy.com/media/BY8ORoRpnJDXeBNwxg/giphy.gif',
+  ])
 </script>
 
 <style scoped>
+/* Carousel effect */
+.slider::before, .slider::after {
+    /* background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 100%); */
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 100px;
+    z-index: 2;
+}
 
+.slider::after {
+    right: 0;
+    top: 0;
+    -webkit-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
+}
+
+.slider::before {
+    left: 0;
+    top: 0;
+}
+
+.slider .slide-track {
+    animation: scroll 10s linear infinite;
+    display: flex;
+    width: calc(250px * 18);
+}
+
+.slider .slide-track:hover {
+    animation-play-state: paused;
+}
+
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-250px * 9));
+    }
+}
 </style>
