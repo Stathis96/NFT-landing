@@ -1,6 +1,6 @@
 <template>
 
-  <div class="flex flex-row h-screen">
+  <div class="w-screen h-screen flex flex-row">
     <div class="w-2/3  bg-gradient-to-r from-darkslategray-light to-darkslategray-dark">
       <div class="flex flex-row pl-10 pt-10 font-mono text-lg font-bold text-white">
         <img class="w-10 h-10" alt="Vue logo" src="../assets/logo.png" />
@@ -15,9 +15,10 @@
             </button>
           </div>
       </div>
+      
       <div class="pt-40 w-2/3">
-        <p class="px-20 text-white font-bold md:text-8xl">Discover super rare artwork and sell it</p>
-        <p class="pt-8 px-20 text-gray-400">More than 1000 digital artoworks are available to be yours, start 
+        <p class="px-20 text-white font-bold lg:text-8xl md:text-4xl text-sm">Discover super rare artwork and sell it</p>
+        <p class="pt-8 px-20 text-gray-400 text-sm lg:text-lg md:text-lg">More than 1000 digital artoworks are available to be yours, start 
           by searching according to the category you are interested in.</p>
           <div class="pt-10 px-20 inline-flex space-x-4 font-mono">
             <button class="text-lg text-black font-bold h-10 w-40 rounded-md text-sm font-medium border-b-2 focus:outline-none focus:ring transition bg-yellow-300 border-yellow-800 hover:bg-yellow-600 active:bg-yellow-700 focus:ring-yellow-300">
@@ -45,9 +46,6 @@
       @before-enter="beforeEnter"
       @enter="enter"
     >
-    <!-- <div>
-      <Card v-for="(source,index) in sources" :key="source.id" :source="source" :data-index="index"/>
-    </div> -->
      <div class="slider overflow-hidden">
       <div class="slide-track ">
         <Card class="slide-track "
@@ -59,8 +57,8 @@
     </div>
   </div>
 
-  <div class="w-full h-64 bg-gradient-to-r from-darkslategray-lighter to-darkslategray-darker">
-    <div class="inline flex justify-between w-full h-full px-60 pt-20 text-gray-300 font-bold ">
+  <div class="w-screen h-64 bg-gradient-to-r from-darkslategray-lighter to-darkslategray-darker">
+    <div class="flex flex-col md:flex-row justify-between w-full h-full px-60 pt-20 text-gray-300 font-bold ">
 
       <div class="inline flex">
         <div class="rounded-full h-20 w-20 flex items-center justify-center bg-gradient-to-r from-darkslategray-light to-darkslategray-dark">
@@ -68,7 +66,7 @@
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         </div>
-        <span class="w-1/4 pl-4 pt-2 font-mono text-md">Trusted with 10 achievements</span>
+        <span class="w-1/4 pl-4 pt-2 text-sm lg:text-base md:text-base">Trusted with 10 achievements</span>
       </div>
 
       <div class="inline flex">
@@ -77,7 +75,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
         </svg>
         </div>
-        <span class="w-1/4 pl-4 pt-2 font-mono text-md">Easy payment and order</span>
+        <span class="w-1/4 pl-4 pt-2 font-mono text-sm lg:text-base md:text-base">Easy payment and order</span>
       </div>
 
       <div class="inline flex">
@@ -86,32 +84,43 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
           </svg>
         </div>
-        <span class="w-1/4 pl-4 pt-2 font-mono text-md">Get discount membership</span>
+        <span class="w-1/4 pl-4 pt-2 font-mono text-sm lg:text-base md:text-base">Get discount membership</span>
       </div>
 
     </div>
   </div>
 
-  <div class="w-full h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark ">
+  <div class="w-screen h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark ">
     
     <div class="flex flex-row font-mono text-lg font-bold text-white items-center">
-      
-     <transition
-      appear
-      @before-enter="beforeEnter"
-      @enter="enter"
-    >
+      <!-- Animation no2 3cardsDisplay -->
 
-      <div class="w-1/2 flex flex-col items-center justify-center">
+      <!-- <div class="w-1/2 flex flex-col items-center justify-center">
+        <Card class="anim1" :source="sources[5]"/>
+        <Card class="anim2" :source="sources[4]"/>
+        <Card class="anim3" :source="sources[3]"/>
+      </div> -->
+
+
+      <div class="anim1 w-1/2 flex flex-col items-center justify-center">
         <Card :source="sources[5]"/>
       </div>
-     </transition>
-     
+
+      <div class="anim3 w-1/2 flex flex-col items-center justify-center">
+        <Card :source="sources[0]"/>
+      </div>
+      
+      <div class="anim2 w-1/2 flex flex-col items-center justify-center">
+        <Card :source="sources[4]"/>
+      </div>
+
+
+      <!-- End of animation  -->
         <div class="w-1/2 flex flex-col items-center mx-20 ">
 
-          <p class="text-3xl text-yellow-300 mb-4">Miracle Feature</p>
-          <p class="text-gray-300 px-48 text-5xl my-2 font-mono">Best Digital art martketplace</p>
-          <p class="text-gray-400 px-40 my-2">A digital marketplace to buy or sell and find all the exclusive
+          <p class="text-base lg:text-3xl md:text-xl text-yellow-300 mb-4">Miracle Feature</p>
+          <p class="text-gray-300 px-48 text-base lg:text-5xl md:text-2xl my-2 font-mono">Best Digital art martketplace</p>
+          <p class="text-gray-400 px-40 my-2 text-sm lg:text-xl md:text-base">A digital marketplace to buy or sell and find all the exclusive
             digital artwork assets. Also Miracle can create digital art.
           </p>
           <button class="mt-6 text-lg text-black font-bold h-10 w-40 rounded-md text-sm font-medium border-b-2 focus:outline-none focus:ring transition bg-yellow-300 border-yellow-800 hover:bg-yellow-600 active:bg-yellow-700 focus:ring-yellow-300">
@@ -121,8 +130,8 @@
     </div>
 
     <div class="flex flex-row mt-20">
-        <p class="w-1/2  text-6xl my-20 text-white mx-56">Popular Feature Artwork</p>
-        <p class="w-1/2 text-xl my-20 text-gray-400 mx-56">Search and find the most popular digital artwork for this week! We have a serach feature that can be used to make searching easier.</p>
+        <p class="w-1/2 text-base lg:text-6xl md:text-3xl my-20 text-white mx-56">Popular Feature Artwork</p>
+        <p class="w-1/2 text-base lg:text-xl md:text-base my-20 text-gray-400 mx-56">Search and find the most popular digital artwork for this week! We have a serach feature that can be used to make searching easier.</p>
     </div>
 
   <div class="grid gap-2 grid-cols-3" >
@@ -135,9 +144,9 @@
     </button>
   </div>
 
-    <div class="flex flex-row mt-20">
-        <p class="w-1/2  text-6xl my-20 text-white mx-56">Weekly Popular Creator</p>
-        <p class="w-1/2 text-xl my-20 text-gray-400 mx-56">Find the best creator of the week, ranked creators filtered by creator popularity in creating digital art, like saved and everything hommies.</p>
+    <div class="flex flex-col lg:flex-row md:flex-row mt-20">
+        <p class="w-1/2 text-base lg:text-6xl md:text-4xl my-20 text-white mx-56">Weekly Popular Creator</p>
+        <p class="w-1/2 text-base lg:text-xl md:text-xl my-20 text-gray-400 mx-56 ">Find the best creator of the week, ranked creators filtered by creator popularity in creating digital art, like saved and everything hommies.</p>
     </div>
 
   <div class="inline flex justify-between space-x-4 mx-8">
@@ -146,7 +155,7 @@
 
   </div>
 
-  <div class="w-full h-64 bg-darkslategray-darkest">
+  <div class="w-screen h-auto bg-darkslategray-darkest">
     <p class="text-gray-300 text-3xl text-center pt-10 font-mono">Trusted By</p>
     <div class="inline flex justify-between w-full h-full px-60 pt-4 text-gray-700 font-bold ">
       <div><img src="https://www.vectorlogo.zone/logos/discordapp/discordapp-ar21.svg" class="w-40 h-40" style="filter: grayscale(100%);" alt=""></div>
@@ -156,18 +165,65 @@
     </div>
   </div>
 
-  <div class="w-full bg-gradient-to-r from-gray-900 to-darkslategray-dark">
+  <div class="w-screen h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark">
     <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted} from 'vue'
 import Footer from './Footer.vue'
 import Card from './Card.vue'
 import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 defineProps<{ msg: string }>()
+
+  onMounted(async () => {
+    gsap.registerPlugin(ScrollTrigger)
+    
+    gsap.from('.anim1', {
+      x:350
+    })
+    
+    gsap.to('.anim1', {
+      scrollTrigger:{
+        trigger: '.anim1',
+        toggleActions: "restart pause restart pause"
+      } ,
+      x:250,
+      y:15,
+      rotation: -15,
+      duration: 1.5
+    })
+
+    // gsap.fromTo('.anim1',{
+    //   scrollTrigger: '.anim1',
+    //  {x:350},
+    //  { x: 250 ,y:15 ,ease:"bounce.out", rotation: -15, duration: 2}
+    //  )
+
+    gsap.from('.anim2', {
+      x:-350,
+
+    })
+    
+    gsap.to('.anim2', {
+      scrollTrigger:{
+        trigger: '.anim2',
+        toggleActions: "restart pause restart pause"
+      } ,
+      x:-250,
+      y:15,
+      rotation: 15,
+      duration: 1.5
+    })
+
+    // gsap.fromTo('.anim2', {x:-350},{x:-250,y:15, ease:"bounce.out", rotation: 15, duration: 2})
+    
+    gsap.fromTo('.anim3', {x:0, zIndex:1 },{ ease:"bounce.inOut", zIndex:1, duration: 2})
+   })
+      
 
     const beforeEnter = (el:any) => {
       console.log('before enter - set intial state')
