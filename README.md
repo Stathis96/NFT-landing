@@ -14,3 +14,6 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 About :
 
 Recreation of a landing page for NTF ,using just Vue + Ts + Tailwind + Vite
+
+Site trying to mimick: 
+https://dribbble.com/shots/16602414-Miracle-NFT-website-interaction
