@@ -45,7 +45,7 @@
     >
      <div class="slider overflow-hidden">
       <div class="slide-track ">
-        <Card class="slide-track "
+        <Card class="slide-track"
           v-for="(source,index) in sources" :key="source.id" :source="source" :data-index="index"/>
        </div>
        </div> 
@@ -153,7 +153,7 @@
 
   <div class="w-screen h-auto bg-darkslategray-darkest">
     <p class="text-gray-300 text-3xl text-center pt-10 font-mono">Trusted By</p>
-    <div class="inline flex justify-between w-full h-full px-60 pt-4 text-gray-700 font-bold ">
+    <div class="flex flex-col md:flex-row justify-between w-full h-full px-60 pt-4 text-gray-700 font-bold ">
       <div><img src="https://www.vectorlogo.zone/logos/discordapp/discordapp-ar21.svg" class="w-40 h-40" style="filter: grayscale(100%);" alt=""></div>
       <div><img src="https://www.vectorlogo.zone/logos/etsy/etsy-ar21.svg" class="w-40 h-40" style="filter: grayscale(100%);" alt=""></div>
       <div><img src="https://www.vectorlogo.zone/logos/fusionauthio/fusionauthio-ar21.svg" class="w-40 h-40" style="filter: grayscale(100%);" alt=""></div>
