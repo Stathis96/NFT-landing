@@ -232,7 +232,7 @@ defineProps<{ msg: string }>()
           trigger: '.anim1',
           toggleActions: "restart pause restart pause"
         } ,
-        x:150,
+        x:100,
         y:5,
         rotation: -15,
         duration: 1.5
@@ -248,7 +248,7 @@ defineProps<{ msg: string }>()
           trigger: '.anim2',
           toggleActions: "restart pause restart pause"
         } ,
-        x:-150,
+        x:-100,
         y:5,
         rotation: 15,
         duration: 1.5
