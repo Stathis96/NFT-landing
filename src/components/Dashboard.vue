@@ -16,7 +16,7 @@
           </div>
       </div>
       
-      <div class="pt-40 w-2/3">
+      <div class="pt-2 md:pt-40 w-2/3">
         <p class="px-20 text-white font-bold lg:text-8xl md:text-4xl text-sm">Discover super rare artwork and sell it</p>
         <p class="pt-8 px-20 text-gray-400 text-sm lg:text-lg md:text-lg">More than 1000 digital artoworks are available to be yours, start 
           by searching according to the category you are interested in.</p>
@@ -25,7 +25,7 @@
               Discover
             </button>
 
-            <button class="pl-10 inline-flex items-center">
+            <button class="pl-2 md:pl-10 inline-flex items-center">
               <span class="text-white font-mono">Create NFT</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -37,9 +37,6 @@
     </div>
 
     <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark flex items-center justify-center">
-    <!-- <div class="w-1/3 h-full bg-gradient-to-r from-darkkhaki-light to-darkkhaki-dark"> -->
-      <!-- <div class="pt-10 pr-10 font-mono text-lg text-white text-right"> Join Us </div> -->
-      <!-- <Card />  -->
 
     <transition
       appear
@@ -57,8 +54,8 @@
     </div>
   </div>
 
-  <div class="w-screen h-64 bg-gradient-to-r from-darkslategray-lighter to-darkslategray-darker">
-    <div class="flex flex-col md:flex-row justify-between w-full h-full px-60 pt-20 text-gray-300 font-bold ">
+  <div class="w-screen h-auto bg-gradient-to-r from-darkslategray-lighter to-darkslategray-darker">
+    <div class="flex flex-col md:flex-row justify-between w-full h-full px-60 py-20 text-gray-300 font-bold ">
 
       <div class="inline flex">
         <div class="rounded-full h-20 w-20 flex items-center justify-center bg-gradient-to-r from-darkslategray-light to-darkslategray-dark">
@@ -92,30 +89,27 @@
 
   <div class="w-screen h-auto bg-gradient-to-r from-gray-900 to-darkslategray-dark ">
     
-    <div class="flex flex-row font-mono text-lg font-bold text-white items-center">
-      <!-- Animation no2 3cardsDisplay -->
+    <div class="flex flex-col md:flex-row font-mono text-lg font-bold text-white items-center">
 
-      <!-- <div class="w-1/2 flex flex-col items-center justify-center">
+      <div class="flex flex-row w-1/2 items-center">
         <Card class="anim1" :source="sources[5]"/>
+        <Card class="anim3" :source="sources[0]"/>
         <Card class="anim2" :source="sources[4]"/>
-        <Card class="anim3" :source="sources[3]"/>
-      </div> -->
-
-
-      <div class="anim1 w-1/2 flex flex-col items-center justify-center">
+      </div>
+<!-- 
+      <div class="anim1 w-1/2 ">
         <Card :source="sources[5]"/>
       </div>
 
-      <div class="anim3 w-1/2 flex flex-col items-center justify-center">
+      <div class="anim3 w-1/2 ">
         <Card :source="sources[0]"/>
       </div>
       
-      <div class="anim2 w-1/2 flex flex-col items-center justify-center">
+      <div class="anim2 w-1/2 ">
         <Card :source="sources[4]"/>
-      </div>
+      </div> -->
 
 
-      <!-- End of animation  -->
         <div class="w-1/2 flex flex-col items-center mx-20 ">
 
           <p class="text-base lg:text-3xl md:text-xl text-yellow-300 mb-4">Miracle Feature</p>
@@ -126,15 +120,17 @@
           <button class="mt-6 text-lg text-black font-bold h-10 w-40 rounded-md text-sm font-medium border-b-2 focus:outline-none focus:ring transition bg-yellow-300 border-yellow-800 hover:bg-yellow-600 active:bg-yellow-700 focus:ring-yellow-300">
             Learn More
           </button>
+
         </div>
+        
     </div>
 
-    <div class="flex flex-row mt-20">
+    <div class="flex flex-col md:flex-row mt-20">
         <p class="w-1/2 text-base lg:text-6xl md:text-3xl my-20 text-white mx-56">Popular Feature Artwork</p>
         <p class="w-1/2 text-base lg:text-xl md:text-base my-20 text-gray-400 mx-56">Search and find the most popular digital artwork for this week! We have a serach feature that can be used to make searching easier.</p>
     </div>
 
-  <div class="grid gap-2 grid-cols-3" >
+  <div class="grid gap-2 grid-cols-3 " >
     <Card v-for="source in sources" :key="source.id" :source="source" />
   </div>
   
@@ -149,7 +145,7 @@
         <p class="w-1/2 text-base lg:text-xl md:text-xl my-20 text-gray-400 mx-56 ">Find the best creator of the week, ranked creators filtered by creator popularity in creating digital art, like saved and everything hommies.</p>
     </div>
 
-  <div class="inline flex justify-between space-x-4 mx-8">
+  <div class="flex flex-col md:flex-row justify-between space-x-4 mx-8">
     <Card v-for="source in sources" :key="source.id" :source="source" />
   </div>
 
@@ -180,22 +176,134 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 defineProps<{ msg: string }>()
 
   onMounted(async () => {
+    gsap.fromTo('.anim3', {x:0, zIndex:1 },{ ease:"bounce.inOut", zIndex:1, duration: 2})
+
     gsap.registerPlugin(ScrollTrigger)
-    
-    gsap.from('.anim1', {
-      x:350
+    const mqs = [
+      window.matchMedia("(max-width: 600px)"),
+      window.matchMedia("(max-width: 768px)"),
+      window.matchMedia("(max-width: 1024px)")
+    ]   
+    if (mqs[0].matches) {
+      console.log("Diastasi ",mqs[0])
+      console.log("600px")
+
+           
+        gsap.from('.anim1', {
+           x:150
+        })
+        gsap.to('.anim1', {
+        scrollTrigger:{
+          trigger: '.anim1',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:50,
+        y:15,
+        rotation: -15,
+        duration: 1.5
+      })
+
+      gsap.from('.anim2', {
+      x:-150,
+
     })
     
-    gsap.to('.anim1', {
-      scrollTrigger:{
-        trigger: '.anim1',
-        toggleActions: "restart pause restart pause"
-      } ,
-      x:250,
-      y:15,
-      rotation: -15,
-      duration: 1.5
+      gsap.to('.anim2', {
+        scrollTrigger:{
+          trigger: '.anim2',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:-50,
+        y:15,
+        rotation: 15,
+        duration: 1.5
+      })
+
+      } else if (mqs[1].matches) {
+      console.log("Diastasi ",mqs[0])
+
+      console.log("800px")
+
+        gsap.from('.anim1', {
+            x:250
+          })
+        gsap.to('.anim1', {
+        scrollTrigger:{
+          trigger: '.anim1',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:150,
+        y:5,
+        rotation: -15,
+        duration: 1.5
+      })
+
+      gsap.from('.anim2', {
+      x:-250,
+
     })
+    
+      gsap.to('.anim2', {
+        scrollTrigger:{
+          trigger: '.anim2',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:-150,
+        y:5,
+        rotation: 15,
+        duration: 1.5
+      })
+
+      } else {
+      console.log("Diastasi ",mqs[0])
+        gsap.from('.anim1', {
+            x:350
+          })
+        gsap.to('.anim1', {
+        scrollTrigger:{
+          trigger: '.anim1',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:250,
+        y:15,
+        rotation: -15,
+        duration: 1.5
+      })
+
+      gsap.from('.anim2', {
+      x:-350,
+
+    })
+    
+      gsap.to('.anim2', {
+        scrollTrigger:{
+          trigger: '.anim2',
+          toggleActions: "restart pause restart pause"
+        } ,
+        x:-250,
+        y:15,
+        rotation: 15,
+        duration: 1.5
+      })
+
+      console.log("1000px")
+   
+      }
+    
+    // gsap.from('.anim1', {
+    //   x:350
+    // })
+    
+    // gsap.to('.anim1', {
+    //   scrollTrigger:{
+    //     trigger: '.anim1',
+    //     toggleActions: "restart pause restart pause"
+    //   } ,
+    //   x:250,
+    //   y:15,
+    //   rotation: -15,
+    //   duration: 1.5
+    // })
 
     // gsap.fromTo('.anim1',{
     //   scrollTrigger: '.anim1',
@@ -203,25 +311,25 @@ defineProps<{ msg: string }>()
     //  { x: 250 ,y:15 ,ease:"bounce.out", rotation: -15, duration: 2}
     //  )
 
-    gsap.from('.anim2', {
-      x:-350,
+    // gsap.from('.anim2', {
+    //   x:-350,
 
-    })
+    // })
     
-    gsap.to('.anim2', {
-      scrollTrigger:{
-        trigger: '.anim2',
-        toggleActions: "restart pause restart pause"
-      } ,
-      x:-250,
-      y:15,
-      rotation: 15,
-      duration: 1.5
-    })
+    // gsap.to('.anim2', {
+    //   scrollTrigger:{
+    //     trigger: '.anim2',
+    //     toggleActions: "restart pause restart pause"
+    //   } ,
+    //   x:-250,
+    //   y:15,
+    //   rotation: 15,
+    //   duration: 1.5
+    // })
 
     // gsap.fromTo('.anim2', {x:-350},{x:-250,y:15, ease:"bounce.out", rotation: 15, duration: 2})
     
-    gsap.fromTo('.anim3', {x:0, zIndex:1 },{ ease:"bounce.inOut", zIndex:1, duration: 2})
+    // gsap.fromTo('.anim3', {x:0, zIndex:1 },{ ease:"bounce.inOut", zIndex:1, duration: 2})
    })
       
 
