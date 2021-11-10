@@ -46,7 +46,7 @@
      <div class="slider overflow-hidden">
       <div class="slide-track ">
         <Card class="slide-track"
-          v-for="(source,index) in sources" :key="source.id" :source="source" :data-index="index"/>
+          v-for="(source,index) in sources" :key="source" :source="source" :data-index="index"/>
        </div>
        </div> 
     </transition>
@@ -131,7 +131,7 @@
     </div>
 
   <div class="grid gap-2 grid-cols-3 " >
-    <Card v-for="source in sources" :key="source.id" :source="source" />
+    <Card v-for="source in sources" :key="source" :source="source" />
   </div>
   
   <div class="w-full flex flex-row justify-center">
@@ -146,7 +146,7 @@
     </div>
 
   <div class="flex flex-col md:flex-row justify-between space-x-4 mx-8">
-    <Card v-for="source in sources" :key="source.id" :source="source" />
+    <Card v-for="source in sources" :key="source" :source="source" />
   </div>
 
   </div>
@@ -173,7 +173,6 @@ import Card from './Card.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-defineProps<{ msg: string }>()
 
   onMounted(async () => {
     gsap.fromTo('.anim3', {x:0, zIndex:1 },{ ease:"bounce.inOut", zIndex:1, duration: 2})
